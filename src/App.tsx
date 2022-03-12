@@ -61,7 +61,7 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const endpoint = useMemo(() => clusterApiUrl(network), []);
+  const endpoint = useMemo(() => rpcHost, []);
   const [isAuth, setIsAuth] = useState(false)
   const wallets = useMemo(
     () => [
@@ -104,9 +104,6 @@ const App = () => {
                         } 
                       />
                     }
-                  
-                  
-                  
                   <Route path="*" element={<h1 className="text_center white pt_24">Page not found!</h1>}></Route>
                 </Routes>
             </BrowserRouter>
