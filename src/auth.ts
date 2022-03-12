@@ -1,6 +1,6 @@
 import axios from "axios";
-const SERVER_URL = 'http://localhost:5000';
-// const SERVER_URL = 'https://terminter-admin-nas.herokuapp.com';
+// const SERVER_URL = 'http://localhost:5000';
+const SERVER_URL = 'https://terminter-admin-nas.herokuapp.com';
 export const isAuthenticated = async () =>{
     let parsedToken: any = localStorage.getItem("user")?.toString() ;
     console.log(parsedToken);

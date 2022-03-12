@@ -8,8 +8,8 @@ import Alert from "@material-ui/lab/Alert";
 
 import { toDate, toDateNum, AlertState, getAtaForMint } from './utils';
 
-const SERVER_URL = 'http://localhost:5000';
-// const SERVER_URL = 'https://terminter-admin-nas.herokuapp.com';
+// const SERVER_URL = 'http://localhost:5000';
+const SERVER_URL = 'https://terminter-admin-nas.herokuapp.com';
 const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
