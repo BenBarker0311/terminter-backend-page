@@ -229,7 +229,8 @@ interface MachineInfo {
   total_items: number,
   machine_collection: string,
   go_live_date: number,
-  captcha: boolean
+  captcha: boolean,
+  remain: boolean
 }
 
 const Home = (props: HomeProps) => {
@@ -257,7 +258,8 @@ const Home = (props: HomeProps) => {
     machine_collection: '',
     go_live_date: 1642280400,
     total_items: 30,
-    captcha: false
+    captcha: false,
+    remain: true
   });
   const [machines, setMachines] = useState<any[]>([]);
   const logout = () => {
@@ -333,7 +335,8 @@ const Home = (props: HomeProps) => {
         go_live_date: cndy.state.goLiveDate?.toNumber(),
         machine_collection: cndy.state.name,
         total_items: cndy.state.itemsAvailable,
-        captcha: cndy.state.gatekeeper == null ? false : true
+        captcha: cndy.state.gatekeeper == null ? false : true,
+        remain: cndy.state?.itemsRemaining < 1 || false
       }
       handleMachineOpen(machineInfo, 'add')
       setLoading(false);
@@ -429,7 +432,8 @@ const Home = (props: HomeProps) => {
             go_live_date: Date.parse(meInfo.data[i].launchDate) / 1000,
             machine_collection: meInfo.data[i].name,
             total_items: meInfo.data[i].size,
-            captcha: false
+            captcha: false,
+            remain: meInfo.data[i].state?.itemsRemaining < 1 || false
           }
           await axios.post(`${SERVER_URL}/add-machine`, machineInfo);
           getMachines();
@@ -477,7 +481,8 @@ const Home = (props: HomeProps) => {
                 go_live_date: cndy.state.goLiveDate?.toNumber(),
                 machine_collection: cndy.state.name,
                 total_items: cndy.state.itemsAvailable,
-                captcha: cndy.state.gatekeeper == null ? false : true
+                captcha: cndy.state.gatekeeper == null ? false : true,
+                remain: cndy.state?.itemsRemaining < 1 || false 
               }
               await axios.post(`${SERVER_URL}/add-machine`, machineInfo)
               getMachines();
