@@ -336,7 +336,7 @@ const Home = (props: HomeProps) => {
         machine_collection: cndy.state.name,
         total_items: cndy.state.itemsAvailable,
         captcha: cndy.state.gatekeeper == null ? false : true,
-        remain: cndy.state?.itemsRemaining < 1 || true
+        remain: cndy.state.isSoldOut
       }
       handleMachineOpen(machineInfo, 'add')
       setLoading(false);
@@ -433,7 +433,7 @@ const Home = (props: HomeProps) => {
             machine_collection: meInfo.data[i].name,
             total_items: meInfo.data[i].size,
             captcha: false,
-            remain: meInfo.data[i].state?.itemsRemaining < 1 || true
+            remain: meInfo.data[i].state?.itemsRemaining ? meInfo.data[i].state?.itemsRemaining < 1 : true
           }
           await axios.post(`${SERVER_URL}/add-machine`, machineInfo);
           getMachines();
@@ -482,7 +482,7 @@ const Home = (props: HomeProps) => {
                 machine_collection: cndy.state.name,
                 total_items: cndy.state.itemsAvailable,
                 captcha: cndy.state.gatekeeper == null ? false : true,
-                remain: cndy.state?.itemsRemaining < 1 || true 
+                remain: cndy.state.isSoldOut
               }
               await axios.post(`${SERVER_URL}/add-machine`, machineInfo)
               getMachines();
